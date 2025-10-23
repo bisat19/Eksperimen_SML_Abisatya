@@ -27,11 +27,8 @@ jobs:
       # 4. Menjalankan skrip automate_Abisatya.py
       - name: Run preprocessing script
         run: |
-          # Masuk ke folder tempat skrip Anda berada
           cd preprocessing
           
-          # Jalankan skrip. Ini akan membuat 'pcos_data_cleaned.csv'
-          # di dalam folder 'preprocessing'
           python automate_Abisatya.py
           
       # 5. Commit dan push data bersih (hasil skrip) kembali ke repositori
