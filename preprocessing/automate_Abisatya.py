@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 import warnings
+import sys
 
 warnings.filterwarnings('ignore')
 
@@ -114,5 +115,7 @@ if __name__ == "__main__":
     if cleaned_df is not None:
         cleaned_df.to_csv(CLEANED_DATA_PATH, index=False)
         print(f"\nData bersih berhasil disimpan di: {CLEANED_DATA_PATH}")
+        sys.exit(0)
     else:
         print("Preprocessing gagal.")
+        sys.exit(1)
