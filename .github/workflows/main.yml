@@ -42,7 +42,7 @@ jobs:
           
           # Tambahkan file hasil preprocessing ke Git
           # Path-nya harus benar: preprocessing/namafile.csv
-          git add preprocessing/pcos_data_cleaned.csv
+          git add preprocessing/PCOS_preprocessing.csv
           
           git status
           
