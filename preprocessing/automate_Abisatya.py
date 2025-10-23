@@ -1,3 +1,5 @@
+# Abisatya Hastarangga P - riabitya@gmail.com
+
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler

@@ -1,0 +1,53 @@
+# Abisatya Hastarangga P - riabitya@gmail.com
+name: Preprocessing Automation Workflow
+on:
+  push:
+    branches:
+      - main
+      - master
+jobs:
+  preprocessing-job:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Mengunduh kode dari repositori
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      # 2. Setup environment Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.7' 
+
+      # 3. Install semua library yang dibutuhkan skrip 
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas scikit-learn openpyxl
+
+      # 4. Menjalankan skrip automate_Abisatya.py
+      - name: Run preprocessing script
+        run: |
+          # Masuk ke folder tempat skrip Anda berada
+          cd preprocessing
+          
+          # Jalankan skrip. Ini akan membuat 'pcos_data_cleaned.csv'
+          # di dalam folder 'preprocessing'
+          python automate_Abisatya.py
+          
+      # 5. Commit dan push data bersih (hasil skrip) kembali ke repositori
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Tambahkan file hasil preprocessing ke Git
+          # Path-nya harus benar: preprocessing/namafile.csv
+          git add preprocessing/pcos_data_cleaned.csv
+          
+          git status
+          
+          # Commit perubahan (|| exit 0 agar tidak error jika tidak ada perubahan)
+          git commit -m "BOT: Update processed dataset" || exit 0
+          
+          # Dorong (push) commit kembali ke repositori Anda
+          git push
